@@ -1,17 +1,17 @@
-'use client';
+"use client";
 
-import { Header } from '../components/Header';
-import { Experience } from '../components/Experience';
-import { Projects } from '../components/Projects';
-import { Skills } from '../components/Skills';
-import { Certifications } from '../components/Certifications';
-import { Education } from '../components/Education';
-import { Contact } from '../components/Contact';
-import { TechnicalSkills } from '../components/TechnicalSkills';
-import { Personality } from '../components/Personality';
-import { Languages } from '../components/Languages';
-import { Hobbies } from '../components/Hobbies';
-import { AnimatedSection } from '../components/AnimatedSection';
+import { Header } from "../components/Header";
+import { Experience } from "../components/Experience";
+import { Projects } from "../components/Projects";
+import { Skills } from "../components/Skills";
+import { Certifications } from "../components/Certifications";
+import { Education } from "../components/Education";
+import { Contact } from "../components/Contact";
+import { TechnicalSkills } from "../components/TechnicalSkills";
+import { Personality } from "../components/Personality";
+import { Languages } from "../components/Languages";
+import { Hobbies } from "../components/Hobbies";
+import { AnimatedSection } from "../components/AnimatedSection";
 
 export default function Home() {
   return (

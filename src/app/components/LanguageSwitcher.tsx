@@ -1,8 +1,8 @@
-'use client';
+"use client";
 
-import { useTranslations } from '../context/TranslationsContext';
-import { useState, useRef, useEffect } from 'react';
-import { FaGlobe, FaChevronDown } from 'react-icons/fa';
+import { useTranslations } from "../context/TranslationsContext";
+import { useState, useRef, useEffect } from "react";
+import { FaGlobe, FaChevronDown } from "react-icons/fa";
 
 export function LanguageSwitcher() {
   const { language, setLanguage } = useTranslations();
@@ -10,29 +10,32 @@ export function LanguageSwitcher() {
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   const languages = {
-    en: 'English',
-    ar: 'العربية'
+    en: "English",
+    ar: "العربية",
   };
 
   const handleLanguageChange = (newLang: string) => {
-    setLanguage(newLang as 'en' | 'ar');
+    setLanguage(newLang as "en" | "ar");
     setIsOpen(false);
     // Update URL to reflect language change
     const path = window.location.pathname;
-    const newPath = path.replace(/^\/[a-z]{2}/, '') || '/';
-    window.history.pushState({}, '', `/${newLang}${newPath}`);
+    const newPath = path.replace(/^\/[a-z]{2}/, "") || "/";
+    window.history.pushState({}, "", `/${newLang}${newPath}`);
   };
 
   // Close dropdown when clicking outside
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+      if (
+        dropdownRef.current &&
+        !dropdownRef.current.contains(event.target as Node)
+      ) {
         setIsOpen(false);
       }
     }
 
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
   return (
@@ -43,7 +46,9 @@ export function LanguageSwitcher() {
       >
         <FaGlobe className="text-primary" />
         <span className="text-sm font-medium">{languages[language]}</span>
-        <FaChevronDown className={`text-xs transition-transform ${isOpen ? 'rotate-180' : ''}`} />
+        <FaChevronDown
+          className={`text-xs transition-transform ${isOpen ? "rotate-180" : ""}`}
+        />
       </button>
 
       {isOpen && (
@@ -64,4 +69,4 @@ export function LanguageSwitcher() {
       )}
     </div>
   );
-} 
+}

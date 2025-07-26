@@ -10,6 +10,7 @@ A modern, animated portfolio app built with Next.js, Tailwind CSS, Framer Motion
 - Best-in-class graphics and smooth animations
 
 ## Customization
+
 - Replace `/public/profile.jpg` with your own profile picture
 - Edit `src/app/page.tsx` to add your real data
 - Update styles and sections as needed
@@ -36,6 +37,7 @@ You can start editing the page by modifying `app/page.tsx`. The page auto-update
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
 ## Tech Stack
+
 - Next.js (App Router, TypeScript)
 - Tailwind CSS
 - Framer Motion (animations)

@@ -1,20 +1,24 @@
-'use client';
+"use client";
 
-import { useTranslations } from '../context/TranslationsContext';
-import { FaExternalLinkAlt } from 'react-icons/fa';
+import { useTranslations } from "../context/TranslationsContext";
+import { FaExternalLinkAlt } from "react-icons/fa";
 
 export function Projects() {
   const { t } = useTranslations();
 
   return (
     <section id="projects" className="py-12">
-      <h2 className="text-2xl font-bold mb-6 text-gradient">{t.projects.title}</h2>
+      <h2 className="text-2xl font-bold mb-6 text-gradient">
+        {t.projects.title}
+      </h2>
       <div className="grid md:grid-cols-2 gap-6">
         {t.projects.items.map((project, index) => (
           <div key={index} className="card group">
             <div className="p-6">
               <div className="mb-4">
-                <h3 className="text-xl font-semibold text-foreground">{project.name}</h3>
+                <h3 className="text-xl font-semibold text-foreground">
+                  {project.name}
+                </h3>
                 <p className="text-muted">{project.description}</p>
               </div>
               <div className="flex flex-wrap gap-2 mb-4">
@@ -42,4 +46,4 @@ export function Projects() {
       </div>
     </section>
   );
-} 
+}

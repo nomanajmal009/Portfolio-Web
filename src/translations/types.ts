@@ -76,4 +76,4 @@ export interface Translation {
     title: string;
     items: string[];
   };
-} 
+}

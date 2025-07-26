@@ -1,10 +1,10 @@
-'use client';
+"use client";
 
-import Image from 'next/image';
-import { useTranslations } from '../context/TranslationsContext';
-import { LanguageSwitcher } from './LanguageSwitcher';
-import { ThemeToggle } from './ThemeToggle';
-import ProfilePicture  from '../../../public/profile.jpeg';
+import Image from "next/image";
+import { useTranslations } from "../context/TranslationsContext";
+import { LanguageSwitcher } from "./LanguageSwitcher";
+import { ThemeToggle } from "./ThemeToggle";
+import ProfilePicture from "../../../public/profile.jpeg";
 
 export function Header() {
   const { t } = useTranslations();
@@ -25,7 +25,9 @@ export function Header() {
               <div className="absolute -bottom-1 -right-1 w-4 h-4 bg-accent rounded-full border-2 border-background" />
             </div>
             <div>
-              <h1 className="text-2xl font-bold text-gradient">{t.header.name}</h1>
+              <h1 className="text-2xl font-bold text-gradient">
+                {t.header.name}
+              </h1>
               <p className="text-primary-light">{t.header.title}</p>
             </div>
           </div>
