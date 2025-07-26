@@ -1,10 +1,25 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Portfolio App
+
+A modern, animated portfolio app built with Next.js, Tailwind CSS, Framer Motion, and Heroicons. Includes:
+
+- Profile section with profile picture
+- Experience, Projects, Skills, Certifications, Education, and Contact sections
+- Social media and GitHub links
+- Dark/Light theme toggle
+- English/Arabic language toggle (UI ready for i18n)
+- Best-in-class graphics and smooth animations
+
+## Customization
+- Replace `/public/profile.jpg` with your own profile picture
+- Edit `src/app/page.tsx` to add your real data
+- Update styles and sections as needed
 
 ## Getting Started
 
 First, run the development server:
 
 ```bash
+npm install
 npm run dev
 # or
 yarn dev
@@ -19,6 +34,14 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+
+## Tech Stack
+- Next.js (App Router, TypeScript)
+- Tailwind CSS
+- Framer Motion (animations)
+- next-themes (theme switching)
+- next-i18next (i18n ready)
+- Heroicons (icons)
 
 ## Learn More
 
