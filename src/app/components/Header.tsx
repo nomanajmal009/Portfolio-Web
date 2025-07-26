@@ -10,7 +10,7 @@ export function Header() {
   const { t } = useTranslations();
 
   return (
-    <header className="fixed top-0 left-0 right-0 glass-effect z-50 border-b border-border">
+    <header className="fixed top-0 left-0 right-0 glass-effect z-50 border-b border-border fade-in visible">
       <div className="container mx-auto px-4 py-4">
         <div className="flex justify-between items-center">
           <div className="flex items-center gap-4">
