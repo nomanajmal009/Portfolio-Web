@@ -28,7 +28,7 @@ export function Navigation() {
   ];
 
   return (
-    <div className="relative w-full">
+    <div className="relative w-full hidden lg:block">
       <nav
         className="flex items-center gap-2 text-xs font-medium overflow-x-auto scrollbar-thin scrollbar-thumb-primary/30 scrollbar-track-transparent px-2"
         style={{ WebkitOverflowScrolling: 'touch' }}
