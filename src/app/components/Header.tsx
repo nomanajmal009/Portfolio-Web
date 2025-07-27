@@ -16,7 +16,7 @@ export function Header() {
           {/* Left: Portfolio Title */}
           <div className="flex items-center flex-shrink-0">
             <h1 className="text-xl font-bold text-gradient leading-tight">
-              Portfolio
+              {t.header.portfolio}
             </h1>
           </div>
 

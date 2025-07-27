@@ -9,6 +9,7 @@ export interface Translation {
     toggleTheme: string;
     toggleLanguage: string;
     description: string;
+    portfolio: string;
   };
   experience: {
     title: string;
