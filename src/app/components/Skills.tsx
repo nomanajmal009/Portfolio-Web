@@ -71,7 +71,7 @@ export function Skills() {
             <button
               onClick={prevPage}
               disabled={isTransitioning}
-              className="absolute left-0 top-1/2 -translate-y-1/2 z-10 w-10 h-10 bg-primary hover:bg-primary/80 disabled:bg-primary/50 disabled:cursor-not-allowed text-white rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110 shadow-lg"
+              className="absolute left-0 top-1/2 -translate-y-1/2 z-10 w-10 h-10 bg-white hover:bg-gray-50 disabled:bg-gray-100 disabled:cursor-not-allowed text-gray-700 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110 shadow-lg border border-gray-200"
               aria-label="Previous page"
             >
               <svg
@@ -83,7 +83,7 @@ export function Skills() {
                 <path
                   strokeLinecap="round"
                   strokeLinejoin="round"
-                  strokeWidth={2}
+                  strokeWidth={2.5}
                   d="M15 19l-7-7 7-7"
                 />
               </svg>
@@ -92,7 +92,7 @@ export function Skills() {
             <button
               onClick={nextPage}
               disabled={isTransitioning}
-              className="absolute right-0 top-1/2 -translate-y-1/2 z-10 w-10 h-10 bg-primary hover:bg-primary/80 disabled:bg-primary/50 disabled:cursor-not-allowed text-white rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110 shadow-lg"
+              className="absolute right-0 top-1/2 -translate-y-1/2 z-10 w-10 h-10 bg-white hover:bg-gray-50 disabled:bg-gray-100 disabled:cursor-not-allowed text-gray-700 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110 shadow-lg border border-gray-200"
               aria-label="Next page"
             >
               <svg
@@ -104,7 +104,7 @@ export function Skills() {
                 <path
                   strokeLinecap="round"
                   strokeLinejoin="round"
-                  strokeWidth={2}
+                  strokeWidth={2.5}
                   d="M9 5l7 7-7 7"
                 />
               </svg>
