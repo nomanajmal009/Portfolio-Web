@@ -35,7 +35,12 @@ export function Experience() {
                 <span>{item.period}</span>
               </div>
             </div>
-            <p className="text-muted">{item.description}</p>
+            <div className="space-y-3">
+              <p className="text-muted">{item.description}</p>
+              {item.description_2 && (
+                <p className="text-muted">{item.description_2}</p>
+              )}
+            </div>
           </div>
         ))}
       </div>

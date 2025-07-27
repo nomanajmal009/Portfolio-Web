@@ -8,6 +8,7 @@ export interface Translation {
     email: string;
     toggleTheme: string;
     toggleLanguage: string;
+    description: string;
   };
   experience: {
     title: string;
@@ -16,6 +17,7 @@ export interface Translation {
       role: string;
       period: string;
       description: string;
+      description_2?: string;
     }>;
   };
   projects: {

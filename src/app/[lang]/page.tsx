@@ -1,6 +1,7 @@
 "use client";
 
 import { Header } from "../components/Header";
+import { Profile } from "../components/Profile";
 import { Experience } from "../components/Experience";
 import { Projects } from "../components/Projects";
 import { Skills } from "../components/Skills";
@@ -18,6 +19,11 @@ export default function Home() {
     <main className="min-h-screen bg-background text-foreground">
       <Header />
       <div className="container mx-auto px-4 py-8 space-y-16 pt-24">
+        <div id="profile">
+          <AnimatedSection animationType="fade-in" delay={0}>
+            <Profile />
+          </AnimatedSection>
+        </div>
         <div id="education">
           <AnimatedSection animationType="fade-in" delay={1}>
             <Education />
