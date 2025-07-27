@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { useIntersectionObserver } from "../hooks/useIntersectionObserver";
 
 interface AnimatedSectionProps {
-  children: React.ReactNode;
+  children: React.ReactNode | ((isVisible: boolean) => React.ReactNode);
   className?: string;
   animationType?: "fade-in" | "slide-in-left" | "slide-in-right" | "scale-in";
   delay?: number;
@@ -31,7 +31,7 @@ export function AnimatedSection({
         () => {
           setIsInitialVisible(true);
         },
-        100 + delay * 100,
+        500 + delay * 100,
       );
 
       return () => clearTimeout(timer);
@@ -50,7 +50,7 @@ export function AnimatedSection({
         isVisible ? "visible" : ""
       }`}
     >
-      {children}
+      {typeof children === "function" ? children(isVisible) : children}
     </div>
   );
 }

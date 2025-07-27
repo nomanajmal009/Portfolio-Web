@@ -21,57 +21,57 @@ export default function Home() {
       <div className="container mx-auto px-4 py-8 space-y-16 pt-24">
         <div id="profile">
           <AnimatedSection animationType="fade-in" delay={0}>
-            <Profile />
+            {(isVisible) => <Profile />}
           </AnimatedSection>
         </div>
         <div id="education">
           <AnimatedSection animationType="fade-in" delay={1}>
-            <Education />
+            {(isVisible) => <Education isVisible={isVisible} />}
           </AnimatedSection>
         </div>
         <div id="experience">
           <AnimatedSection animationType="slide-in-left" delay={2}>
-            <Experience />
+            {(isVisible) => <Experience isVisible={isVisible} />}
           </AnimatedSection>
         </div>
         <div id="projects">
           <AnimatedSection animationType="slide-in-right" delay={3}>
-            <Projects />
+            {(isVisible) => <Projects isVisible={isVisible} />}
           </AnimatedSection>
         </div>
         <div id="technical-skills">
           <AnimatedSection animationType="fade-in" delay={4}>
-            <TechnicalSkills />
+            {(isVisible) => <TechnicalSkills isVisible={isVisible} />}
           </AnimatedSection>
         </div>
         <div id="certifications">
           <AnimatedSection animationType="scale-in" delay={5}>
-            <Certifications />
+            {(isVisible) => <Certifications isVisible={isVisible} />}
           </AnimatedSection>
         </div>
         <div id="skills">
           <AnimatedSection animationType="fade-in" delay={6}>
-            <Skills />
+            {(isVisible) => <Skills />}
           </AnimatedSection>
         </div>
         <div id="personality">
           <AnimatedSection animationType="slide-in-left" delay={7}>
-            <Personality />
+            {(isVisible) => <Personality isVisible={isVisible} />}
           </AnimatedSection>
         </div>
         <div id="languages">
           <AnimatedSection animationType="slide-in-right" delay={8}>
-            <Languages />
+            {(isVisible) => <Languages />}
           </AnimatedSection>
         </div>
         <div id="hobbies">
           <AnimatedSection animationType="scale-in" delay={9}>
-            <Hobbies />
+            {(isVisible) => <Hobbies isVisible={isVisible} />}
           </AnimatedSection>
         </div>
         <div id="contact">
           <AnimatedSection animationType="fade-in" delay={10}>
-            <Contact />
+            {(isVisible) => <Contact isVisible={isVisible} />}
           </AnimatedSection>
         </div>
       </div>

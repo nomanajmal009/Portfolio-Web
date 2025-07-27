@@ -6,8 +6,9 @@ import {
   FaCalendarAlt,
   FaExternalLinkAlt,
 } from "react-icons/fa";
+import { AnimatedContent } from "./AnimatedContent";
 
-export function Certifications() {
+export function Certifications({ isVisible = true }: { isVisible?: boolean }) {
   const { t } = useTranslations();
 
   return (
@@ -21,32 +22,42 @@ export function Certifications() {
             key={index}
             className="card p-6 hover:border-primary/20 transition-colors"
           >
-            <div className="flex items-start gap-3 mb-4">
-              <FaCertificate className="text-2xl text-primary mt-1" />
-              <div>
-                <h3 className="text-xl font-semibold text-foreground">
-                  {cert.name}
-                </h3>
-                <p className="text-primary-light">{cert.issuer}</p>
+            <AnimatedContent animationType="scale-in" delay={0} parentVisible={isVisible}>
+              <div className="flex items-start gap-3 mb-4">
+                <FaCertificate className="text-2xl text-primary mt-1" />
+                <div>
+                  <AnimatedContent animationType="slide-left" delay={1} parentVisible={isVisible}>
+                    <h3 className="text-xl font-semibold text-foreground">
+                      {cert.name}
+                    </h3>
+                  </AnimatedContent>
+                  <AnimatedContent animationType="slide-left" delay={2} parentVisible={isVisible}>
+                    <p className="text-primary-light">{cert.issuer}</p>
+                  </AnimatedContent>
+                </div>
               </div>
-            </div>
-            {cert.date && (
-              <div className="flex items-center gap-2 text-sm text-muted mb-4">
-                <FaCalendarAlt className="text-sm" />
-                <span>{cert.date}</span>
-              </div>
-            )}
-            {cert.link && (
-              <a
-                href={cert.link}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-primary hover:text-primary/80 transition-colors inline-flex items-center gap-2"
-              >
-                <FaExternalLinkAlt className="text-sm" />
-                View Certificate
-              </a>
-            )}
+              {cert.date && (
+                <AnimatedContent animationType="fade-in" delay={3} parentVisible={isVisible}>
+                  <div className="flex items-center gap-2 text-sm text-muted mb-4">
+                    <FaCalendarAlt className="text-sm" />
+                    <span>{cert.date}</span>
+                  </div>
+                </AnimatedContent>
+              )}
+              {cert.link && (
+                <AnimatedContent animationType="slide-right" delay={4} parentVisible={isVisible}>
+                  <a
+                    href={cert.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-primary hover:text-primary/80 transition-colors inline-flex items-center gap-2"
+                  >
+                    <FaExternalLinkAlt className="text-sm" />
+                    View Certificate
+                  </a>
+                </AnimatedContent>
+              )}
+            </AnimatedContent>
           </div>
         ))}
       </div>

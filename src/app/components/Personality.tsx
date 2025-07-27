@@ -1,8 +1,9 @@
 "use client";
 
 import { useTranslations } from "../context/TranslationsContext";
+import { AnimatedContent } from "./AnimatedContent";
 
-export function Personality() {
+export function Personality({ isVisible = true }: { isVisible?: boolean }) {
   const { t } = useTranslations();
 
   return (
@@ -12,12 +13,16 @@ export function Personality() {
       </h2>
       <div className="flex flex-wrap gap-3">
         {t.personality.items.map((trait, idx) => (
-          <span
+          <AnimatedContent
             key={idx}
-            className="bg-accent/20 px-3 py-1 rounded-full text-sm"
+            animationType="scale-in"
+            delay={idx}
+            parentVisible={isVisible}
           >
-            {trait}
-          </span>
+            <span className="bg-accent/20 px-3 py-1 rounded-full text-sm">
+              {trait}
+            </span>
+          </AnimatedContent>
         ))}
       </div>
     </section>

@@ -71,6 +71,7 @@ import {
   SiLinux,
   SiUbuntu,
 } from "react-icons/si";
+import { AnimatedContent } from "./AnimatedContent";
 
 // Create a mapping of technical skills to icons
 const technicalSkillIcons: { [key: string]: React.ReactNode } = {
@@ -287,7 +288,7 @@ const technicalSkillIcons: { [key: string]: React.ReactNode } = {
   ),
 };
 
-export function TechnicalSkills() {
+export function TechnicalSkills({ isVisible = true }: { isVisible?: boolean }) {
   const { t } = useTranslations();
 
   return (
@@ -301,14 +302,20 @@ export function TechnicalSkills() {
             key={index}
             className="card p-4 text-center group hover:border-primary/20 transition-all duration-300 hover:scale-105"
           >
-            <div className="flex flex-col items-center gap-2">
-              {technicalSkillIcons[skill] || (
-                <FaCode className="text-2xl text-primary group-hover:text-accent transition-colors" />
-              )}
-              <h3 className="font-semibold text-foreground group-hover:text-primary transition-colors text-sm">
-                {skill}
-              </h3>
-            </div>
+            <AnimatedContent animationType="scale-in" delay={index % 4} parentVisible={isVisible}>
+              <div className="flex flex-col items-center gap-2">
+                <AnimatedContent animationType="fade-in" delay={1} parentVisible={isVisible}>
+                  {technicalSkillIcons[skill] || (
+                    <FaCode className="text-2xl text-primary group-hover:text-accent transition-colors" />
+                  )}
+                </AnimatedContent>
+                <AnimatedContent animationType="slide-up" delay={2} parentVisible={isVisible}>
+                  <h3 className="font-semibold text-foreground group-hover:text-primary transition-colors text-sm">
+                    {skill}
+                  </h3>
+                </AnimatedContent>
+              </div>
+            </AnimatedContent>
           </div>
         ))}
       </div>
