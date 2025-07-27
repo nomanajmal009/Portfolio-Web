@@ -18,36 +18,56 @@ export default function Home() {
     <main className="min-h-screen bg-background text-foreground">
       <Header />
       <div className="container mx-auto px-4 py-8 space-y-16 pt-24">
-        <AnimatedSection animationType="fade-in" delay={1}>
-          <Education />
-        </AnimatedSection>
-        <AnimatedSection animationType="slide-in-left" delay={2}>
-          <Experience />
-        </AnimatedSection>
-        <AnimatedSection animationType="slide-in-right" delay={3}>
-          <Projects />
-        </AnimatedSection>
-        <AnimatedSection animationType="fade-in" delay={4}>
-          <TechnicalSkills />
-        </AnimatedSection>
-        <AnimatedSection animationType="scale-in" delay={5}>
-          <Certifications />
-        </AnimatedSection>
-        <AnimatedSection animationType="fade-in" delay={6}>
-          <Skills />
-        </AnimatedSection>
-        <AnimatedSection animationType="slide-in-left" delay={7}>
-          <Personality />
-        </AnimatedSection>
-        <AnimatedSection animationType="slide-in-right" delay={8}>
-          <Languages />
-        </AnimatedSection>
-        <AnimatedSection animationType="scale-in" delay={9}>
-          <Hobbies />
-        </AnimatedSection>
-        <AnimatedSection animationType="fade-in" delay={10}>
-          <Contact />
-        </AnimatedSection>
+        <div id="education">
+          <AnimatedSection animationType="fade-in" delay={1}>
+            <Education />
+          </AnimatedSection>
+        </div>
+        <div id="experience">
+          <AnimatedSection animationType="slide-in-left" delay={2}>
+            <Experience />
+          </AnimatedSection>
+        </div>
+        <div id="projects">
+          <AnimatedSection animationType="slide-in-right" delay={3}>
+            <Projects />
+          </AnimatedSection>
+        </div>
+        <div id="technical-skills">
+          <AnimatedSection animationType="fade-in" delay={4}>
+            <TechnicalSkills />
+          </AnimatedSection>
+        </div>
+        <div id="certifications">
+          <AnimatedSection animationType="scale-in" delay={5}>
+            <Certifications />
+          </AnimatedSection>
+        </div>
+        <div id="skills">
+          <AnimatedSection animationType="fade-in" delay={6}>
+            <Skills />
+          </AnimatedSection>
+        </div>
+        <div id="personality">
+          <AnimatedSection animationType="slide-in-left" delay={7}>
+            <Personality />
+          </AnimatedSection>
+        </div>
+        <div id="languages">
+          <AnimatedSection animationType="slide-in-right" delay={8}>
+            <Languages />
+          </AnimatedSection>
+        </div>
+        <div id="hobbies">
+          <AnimatedSection animationType="scale-in" delay={9}>
+            <Hobbies />
+          </AnimatedSection>
+        </div>
+        <div id="contact">
+          <AnimatedSection animationType="fade-in" delay={10}>
+            <Contact />
+          </AnimatedSection>
+        </div>
       </div>
     </main>
   );
