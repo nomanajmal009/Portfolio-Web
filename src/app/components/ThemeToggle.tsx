@@ -1,7 +1,7 @@
-'use client';
+"use client";
 
-import { useTheme } from 'next-themes';
-import { useEffect, useState } from 'react';
+import { useTheme } from "next-themes";
+import { useEffect, useState } from "react";
 
 export function ThemeToggle() {
   const [mounted, setMounted] = useState(false);
@@ -25,15 +25,15 @@ export function ThemeToggle() {
 
   return (
     <button
-      onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+      onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
       className="relative p-2 rounded-lg bg-card hover:bg-accent/10 transition-all duration-200 group"
-      aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
+      aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} mode`}
     >
       <div className="absolute -top-1 -right-1 w-2 h-2 rounded-full bg-primary animate-pulse" />
       <div className="absolute -top-8 left-1/2 -translate-x-1/2 px-2 py-1 bg-card text-card-foreground text-xs rounded-md opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap shadow-sm">
-        {theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
+        {theme === "dark" ? "Switch to light mode" : "Switch to dark mode"}
       </div>
-      {theme === 'dark' ? (
+      {theme === "dark" ? (
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
@@ -66,4 +66,4 @@ export function ThemeToggle() {
       )}
     </button>
   );
-} 
+}

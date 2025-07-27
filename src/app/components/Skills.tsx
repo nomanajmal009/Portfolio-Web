@@ -1,7 +1,7 @@
-'use client';
+"use client";
 
-import { useTranslations } from '../context/TranslationsContext';
-import { useState, useEffect } from 'react';
+import { useTranslations } from "../context/TranslationsContext";
+import { useState, useEffect } from "react";
 
 export function Skills() {
   const { t } = useTranslations();
@@ -59,8 +59,10 @@ export function Skills() {
 
   return (
     <section id="skills" className="py-12">
-      <h2 className="text-2xl font-bold mb-6 text-gradient">{t.skills.title}</h2>
-      
+      <h2 className="text-2xl font-bold mb-6 text-gradient">
+        {t.skills.title}
+      </h2>
+
       {/* Carousel Container */}
       <div className="relative px-12">
         {/* Navigation Buttons */}
@@ -69,22 +71,42 @@ export function Skills() {
             <button
               onClick={prevPage}
               disabled={isTransitioning}
-              className="absolute left-0 top-1/2 -translate-y-1/2 z-10 w-10 h-10 bg-primary hover:bg-primary/80 disabled:bg-primary/50 disabled:cursor-not-allowed text-white rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110 shadow-lg"
+              className="absolute left-0 top-1/2 -translate-y-1/2 z-10 w-10 h-10 bg-white hover:bg-gray-50 disabled:bg-gray-100 disabled:cursor-not-allowed text-gray-700 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110 shadow-lg border border-gray-200"
               aria-label="Previous page"
             >
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+              <svg
+                className="w-5 h-5"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2.5}
+                  d="M15 19l-7-7 7-7"
+                />
               </svg>
             </button>
-            
+
             <button
               onClick={nextPage}
               disabled={isTransitioning}
-              className="absolute right-0 top-1/2 -translate-y-1/2 z-10 w-10 h-10 bg-primary hover:bg-primary/80 disabled:bg-primary/50 disabled:cursor-not-allowed text-white rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110 shadow-lg"
+              className="absolute right-0 top-1/2 -translate-y-1/2 z-10 w-10 h-10 bg-white hover:bg-gray-50 disabled:bg-gray-100 disabled:cursor-not-allowed text-gray-700 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110 shadow-lg border border-gray-200"
               aria-label="Next page"
             >
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+              <svg
+                className="w-5 h-5"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2.5}
+                  d="M9 5l7 7-7 7"
+                />
               </svg>
             </button>
 
@@ -95,12 +117,32 @@ export function Skills() {
               aria-label={isAutoPlaying ? "Pause auto-play" : "Start auto-play"}
             >
               {isAutoPlaying ? (
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 9v6m4-6v6" />
+                <svg
+                  className="w-4 h-4"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M10 9v6m4-6v6"
+                  />
                 </svg>
               ) : (
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14.828 14.828a4 4 0 01-5.656 0M9 10h1m4 0h1m-6 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                <svg
+                  className="w-4 h-4"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M14.828 14.828a4 4 0 01-5.656 0M9 10h1m4 0h1m-6 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                  />
                 </svg>
               )}
             </button>
@@ -113,12 +155,12 @@ export function Skills() {
             <div
               key={`${currentPage}-${index}`}
               className={`card p-4 text-center group hover:border-primary/20 transition-all duration-500 ease-in-out hover:scale-105 ${
-                isTransitioning 
-                  ? 'opacity-0 scale-95 transform -translate-y-2' 
-                  : 'opacity-100 scale-100 transform translate-y-0'
+                isTransitioning
+                  ? "opacity-0 scale-95 transform -translate-y-2"
+                  : "opacity-100 scale-100 transform translate-y-0"
               }`}
               style={{
-                transitionDelay: `${index * 100}ms`
+                transitionDelay: `${index * 100}ms`,
               }}
             >
               <div className="flex flex-col items-center gap-2">
@@ -143,9 +185,9 @@ export function Skills() {
                 disabled={isTransitioning}
                 className={`w-3 h-3 rounded-full transition-all duration-300 ${
                   index === currentPage
-                    ? 'bg-primary scale-125'
-                    : 'bg-primary/30 hover:bg-primary/50'
-                } ${isTransitioning ? 'opacity-50' : 'opacity-100'}`}
+                    ? "bg-primary scale-125"
+                    : "bg-primary/30 hover:bg-primary/50"
+                } ${isTransitioning ? "opacity-50" : "opacity-100"}`}
                 aria-label={`Go to page ${index + 1}`}
               />
             ))}
@@ -155,7 +197,8 @@ export function Skills() {
         {/* Page Info (for debugging) */}
         {totalPages > 1 && (
           <div className="text-center mt-4 text-sm text-muted-foreground">
-            Page {currentPage + 1} of {totalPages} ({t.skills.items.length} total skills) - Auto-play: {isAutoPlaying ? 'ON' : 'OFF'}
+            Page {currentPage + 1} of {totalPages} ({t.skills.items.length}{" "}
+            total skills) - Auto-play: {isAutoPlaying ? "ON" : "OFF"}
           </div>
         )}
       </div>

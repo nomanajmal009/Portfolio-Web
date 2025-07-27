@@ -3,13 +3,16 @@ import { Translation } from "./types";
 const en: Translation = {
   header: {
     name: "Muhammad Noman Ajmal",
-    title: "Computer Scientist | Software Engineer | Full Stack Developer",
+    title: "Software Engineer | Full Stack Developer",
     location: "Riyadh, Saudi Arabia",
     dob: "09 June 1998",
-    phone: "0545864496",
+    phone: "00966545864496",
     email: "nomanajmal007@gmail.com",
     toggleTheme: "Toggle theme",
     toggleLanguage: "Toggle language",
+    portfolio: "Portfolio",
+    description:
+      "Hi, I’m a Full-Stack Developer with 5+ years of experience building scalable and high-performance web apps. I specialize in Ruby on Rails for backend and use modern JS frameworks like React, Next.js, and Angular for the frontend. I help turn ideas into clean, maintainable, and efficient solutions.",
   },
   education: {
     title: "Education",
@@ -44,7 +47,10 @@ const en: Translation = {
         period: "06/2023 - present",
         company: "Oivan, Riyadh",
         role: "Senior Software Engineer",
-        description: `I played a pivotal role in the development of the Ejar Housing web application, focusing on implementing innovative features to enhance its functionality and user experience. Additionally, I diligently maintained the app by swiftly addressing bugs and technical issues to ensure seamless operation. Through collaborative efforts and proactive problem-solving, I sustained the app's performance and reliability, meeting user needs effectively while upholding high standards of quality and efficiency.`,
+        description:
+          "I played a pivotal role in the development of the Ejar Housing web application by NHC (National Housing Company), focusing on implementing innovative features to enhance its functionality and user experience. Additionally, I diligently maintained the app by swiftly addressing bugs and technical issues to ensure seamless operation. Through collaborative efforts and proactive problem-solving, I sustained the app's performance and reliability, meeting user needs effectively while upholding high standards of quality and efficiency.",
+        description_2:
+          "Currently, I am working on the Saudi Electric Efficiency Center (SEEC) project, where I am responsible for adding new stories and features to the website from scratch. This includes implementing data tables with CRUD operations, ensuring efficient data management, and enhancing the platform's overall usability. By focusing on performance optimization and feature expansion, I contribute to improving the user experience and functionality of the system.",
       },
       {
         period: "03/2023 - 06/2023",
