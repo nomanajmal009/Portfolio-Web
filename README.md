@@ -1,19 +1,29 @@
 # Portfolio App
 
-A modern, animated portfolio app built with Next.js, Tailwind CSS, Framer Motion, and Heroicons. Includes:
+A modern, animated portfolio app built with Next.js, Tailwind CSS, Framer Motion, and Ant Design. Features a beautiful, responsive design with smooth animations and dark/light theme support.
 
-- Profile section with profile picture
-- Experience, Projects, Skills, Certifications, Education, and Contact sections
-- Social media and GitHub links
-- Dark/Light theme toggle
-- English/Arabic language toggle (UI ready for i18n)
-- Best-in-class graphics and smooth animations
+## Features
+
+- **Profile Section** - Showcase your profile picture, name, title, and contact information
+- **Work Experience** - Timeline-based experience display with company details
+- **Projects** - Interactive project cards with expandable details and technology tags
+- **Technical Skills** - Rotating carousel of technical skills with icons
+- **Education & Certifications** - Educational background and professional certifications
+- **Skills, Personality, Languages & Hobbies** - Comprehensive personal information sections
+- **Contact Form** - Functional contact form with validation and success modal
+- **Dark/Light Theme Toggle** - Seamless theme switching with persistent preferences
+- **English/Arabic Language Support** - Full internationalization support
+- **Smooth Animations** - Framer Motion powered scroll-triggered animations
+- **Responsive Design** - Fully responsive layout for all device sizes
+- **Rotating Icons Ring** - Animated background icons in the profile section
 
 ## Customization
 
-- Replace `/public/profile.jpg` with your own profile picture
-- Edit `src/app/page.tsx` to add your real data
-- Update styles and sections as needed
+- Replace `/public/profile.jpeg` with your own profile picture
+- Edit `src/translations/en.ts` and `src/translations/ar.ts` to update your personal information
+- Modify components in `src/app/components/` to customize sections
+- Update theme colors in `src/app/globals.css`
+- Adjust animations and timing in component files
 
 ## Getting Started
 
@@ -38,12 +48,29 @@ This project uses [`next/font`](https://nextjs.org/docs/app/building-your-applic
 
 ## Tech Stack
 
-- Next.js (App Router, TypeScript)
-- Tailwind CSS
-- Framer Motion (animations)
-- next-themes (theme switching)
-- next-i18next (i18n ready)
-- Heroicons (icons)
+### Core Framework
+- **Next.js 15.3.1** - React framework with App Router and TypeScript
+- **React 19** - UI library
+- **TypeScript** - Type-safe development
+
+### Styling & UI
+- **Tailwind CSS 4** - Utility-first CSS framework
+- **Ant Design (antd) 5.28.1** - Enterprise-class UI component library
+- **@ant-design/icons** - Icon library for Ant Design components
+
+### Animations
+- **Framer Motion 12.23.24** - Production-ready motion library for React
+
+### Icons
+- **react-icons 5.5.0** - Popular icon libraries (Font Awesome, Simple Icons, etc.)
+- **@heroicons/react 2.2.0** - Beautiful hand-crafted SVG icons
+
+### Theme & Internationalization
+- **next-themes 0.4.6** - Theme switching with system preference support
+- **Custom i18n** - Built-in translation system for English and Arabic
+
+### Additional Libraries
+- **@headlessui/react 2.2.2** - Unstyled, accessible UI components
 
 ## Learn More
 
