@@ -4,6 +4,7 @@ import "./globals.css";
 import { ThemeProvider } from "next-themes";
 import { TranslationsProvider } from "./context/TranslationsContext";
 import { BodyWithDirection } from "./components/BodyWithDirection";
+import { AntdProvider } from "./providers/AntdProvider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -47,7 +48,9 @@ export default function RootLayout({
           }}
         >
           <TranslationsProvider>
-            <BodyWithDirection>{children}</BodyWithDirection>
+            <AntdProvider>
+              <BodyWithDirection>{children}</BodyWithDirection>
+            </AntdProvider>
           </TranslationsProvider>
         </ThemeProvider>
       </body>

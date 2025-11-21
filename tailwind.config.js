@@ -71,6 +71,17 @@ module.exports = {
       opacity: {
         '15': '0.15',
       },
+      scale: {
+        '102': '1.02',
+        '105': '1.05',
+      },
+      transitionDuration: {
+        '200': '200ms',
+        '300': '300ms',
+      },
+      transitionTimingFunction: {
+        'smooth': 'cubic-bezier(0.4, 0, 0.2, 1)',
+      },
     },
   },
   plugins: [],
