@@ -10,6 +10,7 @@ export interface Translation {
     toggleLanguage: string;
     description: string;
     portfolio: string;
+    profile: string;
   };
   experience: {
     title: string;

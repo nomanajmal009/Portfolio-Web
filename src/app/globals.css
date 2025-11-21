@@ -40,11 +40,63 @@
   --active-bg: #334155;
 }
 
+html,
+body {
+  width: 100%;
+  overflow-x: hidden;
+}
+
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-geist-sans), Arial, sans-serif;
   scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Ensure Ant Design Layout components use full width */
+.ant-layout,
+.ant-layout-content {
+  width: 100% !important;
+  max-width: 100% !important;
+}
+
+/* Cursor pointer for all interactive elements */
+button,
+a,
+[role="button"],
+[onclick],
+.cursor-pointer,
+.ant-btn,
+.ant-card-hoverable,
+.ant-tag {
+  cursor: pointer;
+}
+
+button:disabled,
+a:disabled,
+[role="button"]:disabled,
+.ant-btn:disabled,
+.ant-btn-disabled {
+  cursor: not-allowed;
+}
+
+/* Respect user's motion preferences for accessibility */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Smooth scroll with offset for fixed header */
+html {
+  scroll-padding-top: 80px;
 }
 
 /* Custom utility classes */
@@ -52,6 +104,7 @@ body {
   background: rgba(255, 255, 255, 0.7);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
+  will-change: backdrop-filter;
 }
 
 .dark .glass-effect {
@@ -64,55 +117,119 @@ body {
   border: 1px solid var(--card-border);
   box-shadow: var(--card-shadow);
   border-radius: 0.5rem;
-  transition: all 0.2s ease-in-out;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+              box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+              border-color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform, box-shadow;
 }
 
 .card:hover {
+  transform: translateY(-4px);
   box-shadow:
-    0 4px 6px -1px rgb(0 0 0 / 0.1),
-    0 2px 4px -2px rgb(0 0 0 / 0.1);
+    0 10px 15px -3px rgb(0 0 0 / 0.1),
+    0 4px 6px -4px rgb(0 0 0 / 0.1);
+  border-color: rgba(37, 99, 235, 0.2);
 }
 
 .dark .card:hover {
   box-shadow:
-    0 4px 6px -1px rgb(0 0 0 / 0.3),
-    0 2px 4px -2px rgb(0 0 0 / 0.3);
+    0 10px 15px -3px rgb(0 0 0 / 0.3),
+    0 4px 6px -4px rgb(0 0 0 / 0.3);
+  border-color: rgba(59, 130, 246, 0.3);
 }
 
 .button-primary {
   background: var(--primary);
   color: white;
-  transition: all 0.2s ease-in-out;
+  transition: background-color 0.2s cubic-bezier(0.4, 0, 0.2, 1),
+              transform 0.2s cubic-bezier(0.4, 0, 0.2, 1),
+              box-shadow 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: background-color, transform;
 }
 
 .button-primary:hover {
   background: var(--primary-light);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+}
+
+.button-primary:active {
+  transform: translateY(0);
 }
 
 .button-secondary {
   background: var(--secondary);
   color: white;
-  transition: all 0.2s ease-in-out;
+  transition: background-color 0.2s cubic-bezier(0.4, 0, 0.2, 1),
+              transform 0.2s cubic-bezier(0.4, 0, 0.2, 1),
+              box-shadow 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: background-color, transform;
 }
 
 .button-secondary:hover {
   background: var(--secondary-light);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+}
+
+.button-secondary:active {
+  transform: translateY(0);
 }
 
 .text-gradient {
-  background: linear-gradient(to right, var(--primary), var(--accent));
+  background: linear-gradient(135deg, var(--primary), var(--accent));
   -webkit-background-clip: text;
   background-clip: text;
+  -webkit-text-fill-color: transparent;
   color: transparent;
+  background-size: 100% 100%;
 }
 
-/* Transition animations */
+/* Optional subtle animation - only if you want animated gradient */
+.text-gradient-animated {
+  background: linear-gradient(135deg, var(--primary), var(--accent), var(--primary));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  background-size: 200% auto;
+  animation: gradient-shift 6s ease infinite;
+}
+
+@keyframes gradient-shift {
+  0%, 100% {
+    background-position: 0% center;
+  }
+  50% {
+    background-position: 100% center;
+  }
+}
+
+@keyframes orbit-counter-clockwise {
+  0% {
+    transform: translate(-50%, -50%) rotate(0deg) translateX(350px) rotate(0deg);
+  }
+  100% {
+    transform: translate(-50%, -50%) rotate(-360deg) translateX(350px) rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .text-gradient-animated {
+    animation: none;
+    background: linear-gradient(135deg, var(--primary), var(--accent));
+    background-size: 100% 100%;
+  }
+}
+
+/* Transition animations - Optimized for performance */
 .fade-in {
   opacity: 0;
   transform: translateY(30px);
   transition:
-    opacity 0.6s ease-out 0.5s,
-    transform 0.6s ease-out 0.5s;
+    opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1) 0.3s,
+    transform 0.5s cubic-bezier(0.4, 0, 0.2, 1) 0.3s;
+  will-change: opacity, transform;
 }
 
 .fade-in.visible {
@@ -160,13 +277,14 @@ body {
   transition-delay: 1.5s;
 }
 
-/* Slide in animations */
+/* Slide in animations - Optimized for performance */
 .slide-in-left {
   opacity: 0;
   transform: translateX(-50px);
   transition:
-    opacity 0.6s ease-out 0.5s,
-    transform 0.6s ease-out 0.5s;
+    opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1) 0.3s,
+    transform 0.5s cubic-bezier(0.4, 0, 0.2, 1) 0.3s;
+  will-change: opacity, transform;
 }
 
 .slide-in-left.visible {
@@ -178,8 +296,9 @@ body {
   opacity: 0;
   transform: translateX(50px);
   transition:
-    opacity 0.6s ease-out 0.5s,
-    transform 0.6s ease-out 0.5s;
+    opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1) 0.3s,
+    transform 0.5s cubic-bezier(0.4, 0, 0.2, 1) 0.3s;
+  will-change: opacity, transform;
 }
 
 .slide-in-right.visible {
@@ -187,13 +306,14 @@ body {
   transform: translateX(0);
 }
 
-/* Scale in animation */
+/* Scale in animation - Optimized for performance */
 .scale-in {
   opacity: 0;
   transform: scale(0.9);
   transition:
-    opacity 0.6s ease-out 0.5s,
-    transform 0.6s ease-out 0.5s;
+    opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1) 0.3s,
+    transform 0.5s cubic-bezier(0.4, 0, 0.2, 1) 0.3s;
+  will-change: opacity, transform;
 }
 
 .scale-in.visible {

@@ -2,6 +2,8 @@
 
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
+import { motion } from "framer-motion";
+import { FaSun, FaMoon } from "react-icons/fa";
 
 export function ThemeToggle() {
   const [mounted, setMounted] = useState(false);
@@ -15,55 +17,55 @@ export function ThemeToggle() {
   if (!mounted) {
     return (
       <button
-        className="p-2 rounded-lg bg-accent/10 hover:bg-accent/20 transition-all duration-200"
+        className="p-2.5 rounded-xl bg-gradient-to-br from-amber-400/20 to-orange-500/20 hover:from-amber-400/30 hover:to-orange-500/30 transition-all duration-300 cursor-pointer"
         aria-label="Loading theme toggle"
       >
-        <div className="w-5 h-5 animate-pulse bg-accent/20 rounded" />
+        <div className="w-5 h-5 animate-pulse bg-amber-400/40 rounded" />
       </button>
     );
   }
 
+  const isDark = theme === "dark";
+
   return (
-    <button
-      onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-      className="relative p-2 rounded-lg bg-card hover:bg-accent/10 transition-all duration-200 group"
-      aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} mode`}
+    <motion.button
+      onClick={() => setTheme(isDark ? "light" : "dark")}
+      className="relative p-2.5 rounded-xl transition-all duration-300 group cursor-pointer overflow-hidden"
+      style={{
+        background: isDark
+          ? "linear-gradient(135deg, #3B82F6 0%, #8B5CF6 100%)"
+          : "linear-gradient(135deg, #F59E0B 0%, #EF4444 100%)",
+      }}
+      whileHover={{ scale: 1.05 }}
+      whileTap={{ scale: 0.95 }}
+      aria-label={`Switch to ${isDark ? "light" : "dark"} mode`}
     >
-      <div className="absolute -top-1 -right-1 w-2 h-2 rounded-full bg-primary animate-pulse" />
-      <div className="absolute -top-8 left-1/2 -translate-x-1/2 px-2 py-1 bg-card text-card-foreground text-xs rounded-md opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap shadow-sm">
-        {theme === "dark" ? "Switch to light mode" : "Switch to dark mode"}
+      <motion.div
+        className="absolute inset-0 bg-white/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+        initial={false}
+      />
+      <div className="absolute -top-1 -right-1 w-2.5 h-2.5 rounded-full bg-white/80 animate-pulse shadow-lg" />
+      <div className="absolute -top-10 left-1/2 -translate-x-1/2 px-3 py-1.5 bg-card text-card-foreground text-xs rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap shadow-lg border border-border z-50">
+        {isDark ? "Switch to light mode" : "Switch to dark mode"}
       </div>
-      {theme === "dark" ? (
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-          strokeWidth={1.5}
-          stroke="currentColor"
-          className="w-5 h-5 text-secondary transition-transform duration-200 group-hover:rotate-12"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z"
-          />
-        </svg>
-      ) : (
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-          strokeWidth={1.5}
-          stroke="currentColor"
-          className="w-5 h-5 text-primary transition-transform duration-200 group-hover:-rotate-12"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            d="M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z"
-          />
-        </svg>
-      )}
-    </button>
+      <motion.div
+        initial={false}
+        animate={{
+          rotate: isDark ? [0, 360] : [0, -360],
+          scale: [1, 1.1, 1],
+        }}
+        transition={{
+          rotate: { duration: 0.5 },
+          scale: { duration: 0.3 },
+        }}
+        className="relative z-10"
+      >
+        {isDark ? (
+          <FaMoon className="w-5 h-5 text-white drop-shadow-lg" />
+        ) : (
+          <FaSun className="w-5 h-5 text-white drop-shadow-lg" />
+        )}
+      </motion.div>
+    </motion.button>
   );
 }

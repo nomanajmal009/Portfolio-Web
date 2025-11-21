@@ -1,206 +1,149 @@
 "use client";
 
+import { Card } from "antd";
 import { useTranslations } from "../context/TranslationsContext";
-import { useState, useEffect } from "react";
+import { motion } from "framer-motion";
+import {
+  FaLaptopCode,
+  FaBrain,
+  FaUsers,
+  FaPuzzlePiece,
+  FaMicrosoft,
+  FaUserFriends,
+  FaTasks,
+  FaComments,
+  FaKeyboard,
+} from "react-icons/fa";
+
+const skillIcons: { [key: string]: { icon: React.ReactNode; color: string } } = {
+  "Strong Knowledge of Computer Science Concepts - OOP, Database, Operating System and Data Structures": {
+    icon: <FaLaptopCode className="text-3xl" />,
+    color: "#3B82F6", // Blue
+  },
+  "Excellent conceptual and analytical skills": {
+    icon: <FaBrain className="text-3xl" />,
+    color: "#8B5CF6", // Purple
+  },
+  "Effective interpersonal skills": {
+    icon: <FaUsers className="text-3xl" />,
+    color: "#10B981", // Green
+  },
+  "Good Problem Solving and Logic Building": {
+    icon: <FaPuzzlePiece className="text-3xl" />,
+    color: "#F59E0B", // Amber
+  },
+  "Excellent Grip on Microsoft (Word, Excel, and PowerPoint)": {
+    icon: <FaMicrosoft className="text-3xl" />,
+    color: "#EF4444", // Red
+  },
+  "Great Team Player": {
+    icon: <FaUserFriends className="text-3xl" />,
+    color: "#06B6D4", // Cyan
+  },
+  "Great Management Skills": {
+    icon: <FaTasks className="text-3xl" />,
+    color: "#EC4899", // Pink
+  },
+  "Good communication - written and oral skills": {
+    icon: <FaComments className="text-3xl" />,
+    color: "#14B8A6", // Teal
+  },
+  "Excellent Typing Speed": {
+    icon: <FaKeyboard className="text-3xl" />,
+    color: "#F97316", // Orange
+  },
+};
 
 export function Skills() {
   const { t } = useTranslations();
-  const [currentPage, setCurrentPage] = useState(0);
-  const [isAutoPlaying, setIsAutoPlaying] = useState(true);
-  const [isTransitioning, setIsTransitioning] = useState(false);
-
-  const itemsPerPage = 3;
-  const totalPages = Math.ceil(t.skills.items.length / itemsPerPage);
-
-  const nextPage = () => {
-    if (isTransitioning) return;
-    setIsTransitioning(true);
-    setCurrentPage((prev) => (prev + 1) % totalPages);
-    setTimeout(() => setIsTransitioning(false), 500);
-  };
-
-  const prevPage = () => {
-    if (isTransitioning) return;
-    setIsTransitioning(true);
-    setCurrentPage((prev) => (prev - 1 + totalPages) % totalPages);
-    setTimeout(() => setIsTransitioning(false), 500);
-  };
-
-  const goToPage = (page: number) => {
-    if (isTransitioning || page === currentPage) return;
-    setIsTransitioning(true);
-    setCurrentPage(page);
-    setTimeout(() => setIsTransitioning(false), 500);
-  };
-
-  const toggleAutoPlay = () => {
-    setIsAutoPlaying(!isAutoPlaying);
-  };
-
-  const getVisibleSkills = () => {
-    const startIndex = currentPage * itemsPerPage;
-    return t.skills.items.slice(startIndex, startIndex + itemsPerPage);
-  };
-
-  // Auto-play functionality
-  useEffect(() => {
-    if (!isAutoPlaying || totalPages <= 1) return;
-
-    const interval = setInterval(() => {
-      if (!isTransitioning) {
-        setIsTransitioning(true);
-        setCurrentPage((prev) => (prev + 1) % totalPages);
-        setTimeout(() => setIsTransitioning(false), 500);
-      }
-    }, 4000); // 4 seconds per slide
-
-    return () => clearInterval(interval);
-  }, [isAutoPlaying, totalPages, isTransitioning]);
+  
+  // Duplicate items for seamless infinite scroll
+  const skills = [...t.skills.items, ...t.skills.items];
 
   return (
-    <section id="skills" className="py-12">
-      <h2 className="text-2xl font-bold mb-6 text-gradient">
+    <section id="skills" className="py-6 overflow-hidden">
+      <h2 className="text-3xl font-bold mb-8 text-gradient">
         {t.skills.title}
       </h2>
+      <div className="relative w-full">
+        <div className="overflow-hidden py-2">
+          <motion.div
+            className="flex gap-4"
+            animate={{
+              x: [0, `-${(100 / 3) * t.skills.items.length}%`],
+            }}
+            transition={{
+              x: {
+                repeat: Infinity,
+                repeatType: "loop",
+                duration: 40,
+                ease: "linear",
+              },
+            }}
+          >
+            {skills.map((skill, index) => {
+              const skillData = skillIcons[skill] || {
+                icon: <FaLaptopCode className="text-3xl" />,
+                color: "#6B7280",
+              };
 
-      {/* Carousel Container */}
-      <div className="relative px-12">
-        {/* Navigation Buttons */}
-        {totalPages > 1 && (
-          <>
-            <button
-              onClick={prevPage}
-              disabled={isTransitioning}
-              className="absolute left-0 top-1/2 -translate-y-1/2 z-10 w-10 h-10 bg-white hover:bg-gray-50 disabled:bg-gray-100 disabled:cursor-not-allowed text-gray-700 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110 shadow-lg border border-gray-200"
-              aria-label="Previous page"
-            >
-              <svg
-                className="w-5 h-5"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2.5}
-                  d="M15 19l-7-7 7-7"
-                />
-              </svg>
-            </button>
-
-            <button
-              onClick={nextPage}
-              disabled={isTransitioning}
-              className="absolute right-0 top-1/2 -translate-y-1/2 z-10 w-10 h-10 bg-white hover:bg-gray-50 disabled:bg-gray-100 disabled:cursor-not-allowed text-gray-700 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110 shadow-lg border border-gray-200"
-              aria-label="Next page"
-            >
-              <svg
-                className="w-5 h-5"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2.5}
-                  d="M9 5l7 7-7 7"
-                />
-              </svg>
-            </button>
-
-            {/* Auto-play toggle button */}
-            <button
-              onClick={toggleAutoPlay}
-              className="absolute top-0 right-0 z-10 w-8 h-8 bg-primary/20 hover:bg-primary/30 text-primary rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110"
-              aria-label={isAutoPlaying ? "Pause auto-play" : "Start auto-play"}
-            >
-              {isAutoPlaying ? (
-                <svg
-                  className="w-4 h-4"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
+              return (
+                <div
+                  key={`${skill}-${index}`}
+                  className="flex-shrink-0"
+                  style={{ width: "calc(33.333% - 11px)" }}
                 >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M10 9v6m4-6v6"
-                  />
-                </svg>
-              ) : (
-                <svg
-                  className="w-4 h-4"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M14.828 14.828a4 4 0 01-5.656 0M9 10h1m4 0h1m-6 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-                  />
-                </svg>
-              )}
-            </button>
-          </>
-        )}
-
-        {/* Skills Grid with Transition Effects */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          {getVisibleSkills().map((skill, index) => (
-            <div
-              key={`${currentPage}-${index}`}
-              className={`card p-4 text-center group hover:border-primary/20 transition-all duration-500 ease-in-out hover:scale-105 ${
-                isTransitioning
-                  ? "opacity-0 scale-95 transform -translate-y-2"
-                  : "opacity-100 scale-100 transform translate-y-0"
-              }`}
-              style={{
-                transitionDelay: `${index * 100}ms`,
-              }}
-            >
-              <div className="flex flex-col items-center gap-2">
-                <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center">
-                  <span className="text-primary text-xl">💡</span>
+                  <Card
+                    hoverable
+                    className="h-full transition-all duration-300 group relative"
+                    styles={{
+                      body: { padding: 24 },
+                    }}
+                    style={{
+                      backgroundColor: "var(--card)",
+                      borderWidth: "1px",
+                      borderStyle: "solid",
+                      borderColor: "var(--border)",
+                    }}
+                    onMouseEnter={(e) => {
+                      const card = e.currentTarget;
+                      const hoverColor = skillData.color;
+                      card.style.backgroundColor = `${hoverColor}15`;
+                      card.style.borderWidth = "2px";
+                      card.style.borderStyle = "solid";
+                      card.style.borderColor = hoverColor;
+                      card.style.transform = "translateY(-4px)";
+                      card.style.boxShadow = `0 8px 16px ${hoverColor}30`;
+                      card.style.zIndex = "10";
+                    }}
+                    onMouseLeave={(e) => {
+                      const card = e.currentTarget;
+                      card.style.backgroundColor = "var(--card)";
+                      card.style.borderWidth = "1px";
+                      card.style.borderStyle = "solid";
+                      card.style.borderColor = "var(--border)";
+                      card.style.transform = "translateY(0)";
+                      card.style.boxShadow = "";
+                      card.style.zIndex = "1";
+                    }}
+                  >
+                    <div className="flex flex-col items-center text-center gap-4">
+                      <div
+                        className="transition-colors duration-300"
+                        style={{ color: skillData.color }}
+                      >
+                        {skillData.icon}
+                      </div>
+                      <h3 className="font-semibold text-foreground text-sm leading-relaxed group-hover:text-primary transition-colors">
+                        {skill}
+                      </h3>
+                    </div>
+                  </Card>
                 </div>
-                <h3 className="font-semibold text-foreground group-hover:text-primary transition-colors text-sm leading-relaxed">
-                  {skill}
-                </h3>
-              </div>
-            </div>
-          ))}
+              );
+            })}
+          </motion.div>
         </div>
-
-        {/* Page Indicators */}
-        {totalPages > 1 && (
-          <div className="flex justify-center mt-6 gap-2">
-            {Array.from({ length: totalPages }, (_, index) => (
-              <button
-                key={index}
-                onClick={() => goToPage(index)}
-                disabled={isTransitioning}
-                className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                  index === currentPage
-                    ? "bg-primary scale-125"
-                    : "bg-primary/30 hover:bg-primary/50"
-                } ${isTransitioning ? "opacity-50" : "opacity-100"}`}
-                aria-label={`Go to page ${index + 1}`}
-              />
-            ))}
-          </div>
-        )}
-
-        {/* Page Info (for debugging) */}
-        {totalPages > 1 && (
-          <div className="text-center mt-4 text-sm text-muted-foreground">
-            Page {currentPage + 1} of {totalPages} ({t.skills.items.length}{" "}
-            total skills) - Auto-play: {isAutoPlaying ? "ON" : "OFF"}
-          </div>
-        )}
       </div>
     </section>
   );

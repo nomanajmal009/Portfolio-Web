@@ -11,6 +11,7 @@ const en: Translation = {
     toggleTheme: "Toggle theme",
     toggleLanguage: "Toggle language",
     portfolio: "Portfolio",
+    profile: "Profile",
     description:
       "Hi, I’m a Full-Stack Developer with 5+ years of experience building scalable and high-performance web apps. I specialize in Ruby on Rails for backend and use modern JS frameworks like React, Next.js, and Angular for the frontend. I help turn ideas into clean, maintainable, and efficient solutions.",
   },
@@ -254,12 +255,12 @@ const en: Translation = {
     title: "Hobbies",
     items: [
       "Technology",
-      "Snooker",
+      "Coding",
       "Football",
       "Listening Music",
       "Traveling & Tourism",
       "Gaming",
-      "Coding",
+      "Snooker",
     ],
   },
   contact: {

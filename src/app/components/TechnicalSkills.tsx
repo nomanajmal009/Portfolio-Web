@@ -1,5 +1,6 @@
 "use client";
 
+import { Card } from "antd";
 import { useTranslations } from "../context/TranslationsContext";
 import {
   FaReact,
@@ -71,7 +72,7 @@ import {
   SiLinux,
   SiUbuntu,
 } from "react-icons/si";
-import { AnimatedContent } from "./AnimatedContent";
+import { motion } from "framer-motion";
 
 // Create a mapping of technical skills to icons
 const technicalSkillIcons: { [key: string]: React.ReactNode } = {
@@ -292,31 +293,41 @@ export function TechnicalSkills({ isVisible = true }: { isVisible?: boolean }) {
   const { t } = useTranslations();
 
   return (
-    <section id="technical-skills" className="py-12">
-      <h2 className="text-2xl font-bold mb-6 text-gradient">
+    <section id="technical-skills" className="py-8">
+      <h2 className="text-3xl font-bold mb-8 text-gradient">
         {t.technicalSkills.title}
       </h2>
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
         {t.technicalSkills.items.map((skill, index) => (
-          <div
+          <motion.div
             key={index}
-            className="card p-4 text-center group hover:border-primary/20 transition-all duration-300 hover:scale-105"
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={isVisible ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.9 }}
+            transition={{
+              duration: 0.3,
+              delay: index * 0.03,
+              ease: [0.22, 1, 0.36, 1],
+            }}
           >
-            <AnimatedContent animationType="scale-in" delay={index % 4} parentVisible={isVisible}>
-              <div className="flex flex-col items-center gap-2">
-                <AnimatedContent animationType="fade-in" delay={1} parentVisible={isVisible}>
+            <Card
+              hoverable
+              className="text-center border-border group"
+              styles={{
+                body: { padding: 20 },
+              }}
+            >
+              <div className="flex flex-col items-center gap-3">
+                <div className="text-3xl">
                   {technicalSkillIcons[skill] || (
-                    <FaCode className="text-2xl text-primary group-hover:text-accent transition-colors" />
+                    <FaCode className="text-primary group-hover:text-accent transition-colors" />
                   )}
-                </AnimatedContent>
-                <AnimatedContent animationType="slide-up" delay={2} parentVisible={isVisible}>
-                  <h3 className="font-semibold text-foreground group-hover:text-primary transition-colors text-sm">
-                    {skill}
-                  </h3>
-                </AnimatedContent>
+                </div>
+                <h3 className="font-semibold text-foreground group-hover:text-primary transition-colors text-sm">
+                  {skill}
+                </h3>
               </div>
-            </AnimatedContent>
-          </div>
+            </Card>
+          </motion.div>
         ))}
       </div>
     </section>

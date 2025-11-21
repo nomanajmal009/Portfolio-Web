@@ -1,28 +1,33 @@
 "use client";
 
 import Image from "next/image";
+import { Button } from "antd";
+import { MessageOutlined } from "@ant-design/icons";
 import { useTranslations } from "../context/TranslationsContext";
 import ProfilePicture from "../../../public/profile.jpeg";
 import { RotatingIconsRing } from "./RotatingIconsRing";
+import { motion } from "framer-motion";
 
 export function Profile() {
   const { t } = useTranslations();
 
   return (
-    <section className="py-16 relative bg-gradient-to-br from-background via-background to-primary/5">
-      <RotatingIconsRing />
-      <div className="max-w-4xl mx-auto text-center relative z-10">
+    <section className="py-16 relative bg-gradient-to-br from-background via-background to-primary/5 w-full">
+      <RotatingIconsRing circleSize={600} radius={280} duration={20} />
+      <div className="max-w-4xl mx-auto text-center relative z-10 px-4">
         {/* Profile Picture */}
         <div className="mb-8 flex justify-center">
-          <div className="relative">
+          <div className="relative group">
+            <div className="absolute inset-0 rounded-full bg-gradient-to-r from-primary to-accent opacity-0 group-hover:opacity-20 blur-xl transition-opacity duration-300" />
             <Image
               src={ProfilePicture}
               alt="Profile"
               width={200}
               height={200}
-              className="rounded-full border-4 border-primary shadow-2xl transition-transform hover:scale-105"
+              className="relative rounded-full border-4 border-primary shadow-2xl transition-all duration-300 hover:scale-105 hover:shadow-primary/20"
+              priority
             />
-            <div className="absolute -bottom-2 -right-2 w-6 h-6 bg-accent rounded-full border-4 border-background" />
+            <div className="absolute bottom-4 right-4 w-6 h-6 bg-green-500 rounded-full border-4 border-background shadow-lg" />
           </div>
         </div>
 
@@ -96,7 +101,7 @@ export function Profile() {
             </svg>
             <a 
               href={`mailto:${t.header.email}`}
-              className="hover:text-primary transition-colors"
+              className="hover:text-primary transition-colors duration-200 hover:underline cursor-pointer"
             >
               {t.header.email}
             </a>
@@ -117,7 +122,7 @@ export function Profile() {
             </svg>
             <a 
               href={`tel:${t.header.phone}`}
-              className="hover:text-primary transition-colors"
+              className="hover:text-primary transition-colors duration-200 hover:underline cursor-pointer"
             >
               {t.header.phone}
             </a>
@@ -125,11 +130,46 @@ export function Profile() {
         </div>
 
         {/* Description */}
-        <div className="max-w-3xl mx-auto">
+        <div className="max-w-3xl mx-auto mb-8">
           <p className="text-lg leading-relaxed text-foreground/80">
             {t.header.description}
           </p>
         </div>
+
+        {/* Let's Connect Button */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.3 }}
+        >
+          <motion.div
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            <Button
+              type="primary"
+              size="large"
+              icon={<MessageOutlined />}
+              onClick={() => {
+                const element = document.getElementById("lets-connect");
+                if (element) {
+                  const headerHeight = 80;
+                  const elementRect = element.getBoundingClientRect();
+                  const absoluteElementTop = elementRect.top + window.pageYOffset;
+                  const offsetPosition = absoluteElementTop - headerHeight;
+
+                  window.scrollTo({
+                    top: Math.max(0, offsetPosition),
+                    behavior: 'smooth'
+                  });
+                }
+              }}
+              className="h-12 px-8 text-base font-semibold bg-gradient-to-r from-primary to-accent hover:from-primary-light hover:to-accent-light border-0 shadow-lg"
+            >
+              Let's Connect
+            </Button>
+          </motion.div>
+        </motion.div>
       </div>
     </section>
   );

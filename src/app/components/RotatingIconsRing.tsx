@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { motion } from "framer-motion";
 import {
   FaReact,
   FaNodeJs,
@@ -72,8 +73,8 @@ import {
   SiUbuntu,
 } from "react-icons/si";
 
-// Array of icon components for the rotating ring
-const rotatingIcons = [
+// Default icons array
+const defaultIcons = [
   { icon: FaReact, color: "#61DAFB" },
   { icon: FaNodeJs, color: "#339933" },
   { icon: FaPython, color: "#3776AB" },
@@ -131,7 +132,24 @@ const rotatingIcons = [
   { icon: FaWind, color: "#6C757D" },
 ];
 
-export function RotatingIconsRing() {
+interface IconData {
+  icon: React.ComponentType<{ className?: string; style?: React.CSSProperties }>;
+  color: string;
+}
+
+interface RotatingIconsRingProps {
+  icons?: IconData[];
+  circleSize?: number;
+  radius?: number;
+  duration?: number;
+}
+
+export function RotatingIconsRing({
+  icons = defaultIcons,
+  circleSize = 200,
+  radius = 80,
+  duration = 8,
+}: RotatingIconsRingProps) {
   const [isClient, setIsClient] = useState(false);
 
   useEffect(() => {
@@ -139,43 +157,75 @@ export function RotatingIconsRing() {
   }, []);
 
   if (!isClient) {
-    return null; // Don't render on server to prevent hydration mismatch
+    return null;
   }
 
+  const iconCount = icons.length;
+  const angleStep = 360 / iconCount;
+
   return (
-    <div className="absolute inset-0 pointer-events-none overflow-hidden">
+    <div
+      className="absolute inset-0 pointer-events-none overflow-hidden"
+      style={{
+        width: `${circleSize}px`,
+        height: `${circleSize}px`,
+        left: '50%',
+        top: '50%',
+        transform: 'translate(-50%, -50%)',
+      }}
+    >
       <div className="relative w-full h-full">
-        {rotatingIcons.map((iconData, index) => {
+        {icons.map((iconData, index) => {
           const IconComponent = iconData.icon;
-          const angle = (index * 360) / rotatingIcons.length;
-          const radius = 400; // Adjust this value to change the ring size
-          const x = Math.cos((angle * Math.PI) / 180) * radius;
-          const y = Math.sin((angle * Math.PI) / 180) * radius;
+          const initialAngle = index * angleStep;
 
           return (
-            <div
+            <motion.div
               key={index}
-              className="absolute animate-orbit-clockwise"
+              className="absolute"
               style={{
-                left: `calc(50% + ${x}px)`,
-                top: `calc(50% + ${y}px)`,
-                transform: 'translate(-50%, -50%)',
-                animationDelay: `${(index * 100)}ms`,
-                animationDuration: '15s',
+                left: '50%',
+                top: '50%',
+                transformOrigin: 'center center',
+              }}
+              animate={{
+                rotate: [initialAngle, initialAngle - 360],
+              }}
+              transition={{
+                duration,
+                repeat: Infinity,
+                ease: 'linear',
               }}
             >
-              <IconComponent
-                className="text-2xl animate-pulse-subtle hover:opacity-60 transition-opacity duration-300 drop-shadow-lg"
-                style={{ 
-                  color: iconData.color, 
-                  opacity: '0.4',
-                  filter: 'drop-shadow(0 0 8px rgba(255,255,255,0.1))'
+              <div
+                style={{
+                  transform: `translate(-50%, -50%) translateX(${radius}px)`,
                 }}
-              />
-            </div>
+              >
+                <motion.div
+                  animate={{
+                    rotate: [0, 360],
+                  }}
+                  transition={{
+                    duration,
+                    repeat: Infinity,
+                    ease: 'linear',
+                  }}
+                >
+                  <IconComponent
+                    className="text-2xl transition-opacity duration-300 drop-shadow-lg"
+                    style={{
+                      color: iconData.color,
+                      opacity: 0.4,
+                      filter: 'drop-shadow(0 0 8px rgba(255,255,255,0.1))',
+                    }}
+                  />
+                </motion.div>
+              </div>
+            </motion.div>
           );
         })}
       </div>
     </div>
   );
-} 
+}
